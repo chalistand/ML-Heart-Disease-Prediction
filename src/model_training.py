@@ -1,65 +1,81 @@
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score, classification_report
-import joblib 
-import os 
+import joblib
+import os
 import warnings
 warnings.filterwarnings('ignore')
 
-# Tentukan PATH relatif ke root folder (di luar src/)
-DATA_DIR = '../data/'
+DATA_PATH = '../data/dataset.csv'   # ganti sesuai nama file aslinya
 MODEL_PATH = '../src/final_model.joblib'
+SCALER_PATH = '../src/scaler.joblib'
+FEATURE_PATH = '../src/feature_names.joblib'
 
-def get_absolute_path(relative_path):
-    """Mendapatkan path absolut."""
-    script_dir = os.path.dirname(os.path.abspath(__file__)) 
-    return os.path.join(script_dir, relative_path)
 
-def load_processed_data():
-    """Memuat data training dan testing yang sudah di-scale."""
+def get_absolute_path(path):
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(script_dir, path)
+
+
+def load_dataset():
     try:
-        X_train = pd.read_csv(get_absolute_path(DATA_DIR + 'X_train.csv'))
-        X_test = pd.read_csv(get_absolute_path(DATA_DIR + 'X_test.csv'))
-        y_train = pd.read_csv(get_absolute_path(DATA_DIR + 'y_train.csv')).squeeze()
-        y_test = pd.read_csv(get_absolute_path(DATA_DIR + 'y_test.csv')).squeeze()
-        
-        print("Data train/test berhasil dimuat dan siap training.")
-        return X_train, X_test, y_train, y_test
-    except FileNotFoundError:
-        print("🚨 Error: File data train/test (X_train.csv, dll.) tidak ditemukan.")
-        print("Pastikan Anda sudah menjalankan 'python src/data_preprocessing.py' terlebih dahulu.")
-        return None, None, None, None
+        df = pd.read_csv(get_absolute_path(DATA_PATH))
 
-def train_and_evaluate_model(X_train, X_test, y_train, y_test):
-    """Melatih model Random Forest, menguji, dan menyimpan hasilnya."""
-    
-    if X_train is None:
-        return None
+        # 👉 Pastikan hanya pakai fitur dataset kamu
+        FEATURE_NAMES = ['age', 'sex', 'trestbps', 'chol', 'weight', 'height']
 
-    # 1. Inisialisasi Model
-    model = RandomForestClassifier(n_estimators=100, random_state=42, max_depth=8)
+        X = df[FEATURE_NAMES]
+        y = df['target']   # pastikan ini nama kolom label
 
-    # 2. Melatih Model
-    print("\n--- Mulai Melatih Model Random Forest ---")
-    model.fit(X_train, y_train)
-    print("Pelatihan model selesai.")
+        print("Dataset berhasil dimuat.")
+        return X, y, FEATURE_NAMES
 
-    # 3. Menguji Model
-    y_pred = model.predict(X_test)
-    accuracy = accuracy_score(y_test, y_pred)
-    report = classification_report(y_test, y_pred, target_names=['Tidak Sakit (0)', 'Sakit Jantung (1)'])
+    except Exception as e:
+        print(f"🚨 Error load dataset: {e}")
+        return None, None, None
 
-    print("\n--- Hasil Evaluasi Model ---")
-    print(f"Akurasi Model pada data testing: {accuracy*100:.2f}%")
+
+def train_model(X, y, FEATURE_NAMES):
+
+    # split
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42
+    )
+
+    # scaler
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+
+    # model
+    model = RandomForestClassifier(
+        n_estimators=100,
+        random_state=42,
+        max_depth=8
+    )
+
+    print("\n--- Mulai training model ---")
+    model.fit(X_train_scaled, y_train)
+
+    y_pred = model.predict(X_test_scaled)
+    acc = accuracy_score(y_test, y_pred)
+
+    print("\nAkurasi Testing:", round(acc * 100, 2), "%")
     print("\nClassification Report:")
-    print(report)
-    
-    # 4. Menyimpan Model
+    print(classification_report(y_test, y_pred))
+
+    # simpan model
     joblib.dump(model, get_absolute_path(MODEL_PATH))
-    print(f"\n✅ Model Random Forest berhasil disimpan di: {get_absolute_path(MODEL_PATH)}")
+    joblib.dump(scaler, get_absolute_path(SCALER_PATH))
+    joblib.dump(FEATURE_NAMES, get_absolute_path(FEATURE_PATH))
+
+    print("\n✅ Model, scaler, dan feature names berhasil disimpan!")
     return model
 
+
 if __name__ == '__main__':
-    X_train, X_test, y_train, y_test = load_processed_data()
-    train_and_evaluate_model(X_train, X_test, y_train, y_test)
-    
+    X, y, FEATURE_NAMES = load_dataset()
+    if X is not None:
+        train_model(X, y, FEATURE_NAMES)
