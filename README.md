@@ -1,4 +1,18 @@
-# 🩺 Team-Based UAS Project: ML-Heart-Disease-Prediction
+<div align="center">
+
+# 🩺 ML-Heart-Disease-Prediction
+*Team-Based UAS Project – Healthcare*
+
+![Python](https://img.shields.io/badge/Python-3.x-blue)
+![ML](https://img.shields.io/badge/Machine%20Learning-Random%20Forest-orange)
+![Flask](https://img.shields.io/badge/Flask-Web_App-green)
+
+</div>
+
+---
+
+**#Demo Website Prediksi Penyakit Jantung**
+![Image](https://github.com/user-attachments/assets/a4481df6-d299-412b-a88a-5cd99f922277)
 
 ## 1. Pendahuluan
 Proyek ini bertujuan untuk membangun model Machine Learning (ML) yang mampu memprediksi risiko seseorang menderita penyakit jantung berdasarkan data klinis enam parameter. Proyek ini sepenuhnya diimplementasikan melalui alur kerja Git/GitHub yang terstruktur.
@@ -18,21 +32,20 @@ Seluruh pekerjaan dalam proyek ini dilakukan secara kolaboratif menggunakan Git 
 
 ## 3. Tahapan Pengembangan & Hasil Akhir
 
-### A. Data Preprocessing (Oleh Azza)
+### A. Data Preprocessing 
 * **Tujuan:** Menyiapkan dan membersihkan data untuk pelatihan model.
 * **Script:** `src/data_preprocessing.py`
 * **Proses Kunci:** Data dibagi 80% (Training) dan 20% (Testing). Fitur diskalakan menggunakan `StandardScaler` (`src/scaler.joblib`) untuk memastikan fitur memiliki kontribusi yang setara.
 * **Output Data:** `data/X_train.csv`, `data/y_train.csv`, dll.
 
-### B. Pembangunan & Pengujian Model (Oleh Azza)
+### B. Pembangunan & Pengujian Model 
 * **Model:** Random Forest Classifier.
 * **Script:** `src/model_training.py`
 * **Langkah:** Model dilatih menggunakan data yang sudah di-scale.
 * **Model Final:** Disimpan sebagai `src/final_model.joblib`.
-* **Hasil Pengujian pada Data Testing:**
-    * **Akurasi Model:** **[ISI NILAI AKURASI FINAL AZZA DI SINI, misal: 87.50%]**
+* **Pengujian pada Data Testing.**
 
-### C. Implementasi Hasil Akhir (Deployment) (Oleh Hani)
+### C. Implementasi Hasil Akhir (Deployment) 
 Untuk menunjukkan model yang dapat dijalankan, kami membuat aplikasi web sederhana:
 * **Backend Server:** Flask (`src/app.py`), yang memuat model (`final_model.joblib`) dan *scaler*.
 * **Frontend User Interface:** HTML (`templates/index.html`), yang menyediakan *form input* klinis pasien.
@@ -42,8 +55,6 @@ Untuk menunjukkan model yang dapat dijalankan, kami membuat aplikasi web sederha
     3.  Akses di browser: `http://127.0.0.1:5000/`
 
 ## 4. Dependencies (`requirements.txt`)
-Daftar library Python yang diperlukan untuk menjalankan proyek:
-## 5. Demo Website Prediksi Penyakit Jantung
-![Image](https://github.com/user-attachments/assets/a4481df6-d299-412b-a88a-5cd99f922277)
+Daftar library Python yang diperlukan untuk menjalankan proyek.
 
 
