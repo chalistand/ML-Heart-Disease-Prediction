@@ -42,4 +42,7 @@ Untuk menunjukkan model yang dapat dijalankan, kami membuat aplikasi web sederha
 
 ## 4. Dependencies (`requirements.txt`)
 Daftar library Python yang diperlukan untuk menjalankan proyek:
+## 5. Demo Website Prediksi Penyakit Jantung
+![Image](https://github.com/user-attachments/assets/a4481df6-d299-412b-a88a-5cd99f922277)
+
 
