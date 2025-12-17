@@ -15,7 +15,9 @@
 ![Image](https://github.com/user-attachments/assets/a4481df6-d299-412b-a88a-5cd99f922277)
 
 ## 1. Pendahuluan
-Proyek ini bertujuan untuk membangun model Machine Learning (ML) yang mampu memprediksi risiko seseorang menderita penyakit jantung berdasarkan data klinis enam parameter. Proyek ini sepenuhnya diimplementasikan melalui alur kerja Git/GitHub yang terstruktur.
+Proyek ini bertujuan untuk membangun model *Machine Learning (ML)* yang mampu memprediksi risiko seseorang menderita penyakit jantung berdasarkan data klinis enam parameter. Model melakukan klasifikasi dengan dua kelas, yaitu *Target = 1* (berisiko penyakit jantung) dan *Target = 0* (tidak berisiko penyakit jantung).
+
+Proyek ini dikembangkan sebagai bagian dari *Ujian Akhir Semester (UAS)* dan sepenuhnya diimplementasikan melalui alur kerja *Git/GitHub* yang terstruktur, mencakup penggunaan repository, branch, commit, dan pull request sebagai bukti kolaborasi tim.
 
 **Tema Machine Learning:** Healthcare (Pelayanan Kesehatan)
 
@@ -33,28 +35,118 @@ Seluruh pekerjaan dalam proyek ini dilakukan secara kolaboratif menggunakan Git 
 ## 3. Tahapan Pengembangan & Hasil Akhir
 
 ### A. Data Preprocessing 
-* **Tujuan:** Menyiapkan dan membersihkan data untuk pelatihan model.
-* **Script:** `src/data_preprocessing.py`
-* **Proses Kunci:** Data dibagi 80% (Training) dan 20% (Testing). Fitur diskalakan menggunakan `StandardScaler` (`src/scaler.joblib`) untuk memastikan fitur memiliki kontribusi yang setara.
-* **Output Data:** `data/X_train.csv`, `data/y_train.csv`, dll.
+* *Tujuan:* Menyiapkan dan membersihkan data agar siap digunakan untuk pelatihan model.
+* *Script:* src/data_preprocessing.py
+* *Proses Kunci:*
+
+  * Pembagian data menjadi *80% data training* dan *20% data testing*
+  * Normalisasi fitur menggunakan *StandardScaler* untuk menyamakan skala data
+* *Output:*
+
+  * data/X_train.csv
+  * data/X_test.csv
+  * data/y_train.csv
+  * data/y_test.csv
+  * src/scaler.joblib
+
+---
 
 ### B. Pembangunan & Pengujian Model 
-* **Model:** Random Forest Classifier.
-* **Script:** `src/model_training.py`
-* **Langkah:** Model dilatih menggunakan data yang sudah di-scale.
-* **Model Final:** Disimpan sebagai `src/final_model.joblib`.
-* **Pengujian pada Data Testing.**
+* *Model:* Random Forest Classifier
+* *Script:* src/model_training.py
+* *Proses:*
+
+  * Pelatihan model menggunakan data yang telah melalui proses scaling
+  * Evaluasi model menggunakan data testing
+* *Model Final:* src/final_model.joblib
+
+---
 
 ### C. Implementasi Hasil Akhir (Deployment) 
-Untuk menunjukkan model yang dapat dijalankan, kami membuat aplikasi web sederhana:
-* **Backend Server:** Flask (`src/app.py`), yang memuat model (`final_model.joblib`) dan *scaler*.
-* **Frontend User Interface:** HTML (`templates/index.html`), yang menyediakan *form input* klinis pasien.
-* **Cara Menjalankan Lokal:**
-    1.  Instal dependensi: `pip install -r requirements.txt` (pastikan Flask, pandas, scikit-learn, joblib ada).
-    2.  Jalankan server: `python src/app.py`
-    3.  Akses di browser: `http://127.0.0.1:5000/`
+Sebagai bentuk implementasi nyata, model yang telah dibangun diintegrasikan ke dalam aplikasi web sederhana.
 
-## 4. Dependencies (`requirements.txt`)
-Daftar library Python yang diperlukan untuk menjalankan proyek.
+* *Backend:* Flask (src/app.py)
+* *Frontend:* HTML (templates/index.html)
+* *Fitur Aplikasi:*
 
+  * Form input data klinis pasien
+  * Menampilkan hasil prediksi risiko penyakit jantung
 
+---
+
+## ⚙ Cara Menjalankan Proyek Secara Lokal
+
+Langkah Langkah Menjalankan Proyek Secara Lokal</strong></summary>
+
+<br>
+
+*ML-Heart-Disease-Prediction*
+
+Ikuti langkah-langkah berikut untuk menjalankan aplikasi *Prediksi Penyakit Jantung* pada komputer lokal.
+
+---
+
+### 1️⃣ Pastikan Python Terinstal
+```bash
+python --version
+```
+
+---
+
+### 2️⃣ Clone Repository Proyek
+```bash
+git clone https://github.com/chalistand/ML-Heart-Disease-Prediction.git
+cd ML-Heart-Disease-Prediction
+```
+
+---
+
+### 3️⃣ Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### 4️⃣ Jalankan Aplikasi
+```bash
+python src/app.py
+```
+
+---
+
+### 5️⃣ Akses Aplikasi
+```text
+http://127.0.0.1:5000/
+```
+
+---
+
+### 6️⃣ Menghentikan Aplikasi
+Tekan *Ctrl + C* pada terminal untuk menghentikan aplikasi.
+
+✨ *Catatan:*  
+Pastikan file final_model.joblib da
+
+---
+
+## 4. Dependencies (requirements.txt)
+
+Library Python yang digunakan dalam proyek ini meliputi:
+
+* Python
+* Flask
+* Pandas
+* NumPy
+* Scikit-learn
+* Joblib
+
+Seluruh dependensi tercantum lengkap pada file requirements.txt.
+
+---
+
+## 5. Kesimpulan
+
+Proyek *ML-Heart-Disease-Prediction* berhasil mengimplementasikan alur kerja machine learning secara menyeluruh, mulai dari pengolahan data, pelatihan model, evaluasi, hingga deployment dalam bentuk aplikasi web. Selain aspek teknis, proyek ini juga menekankan pentingnya kerja sama tim dan penggunaan GitHub sebagai alat version control dalam pengembangan proyek secara profesional.
+
+---
