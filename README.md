@@ -1,9 +1,9 @@
 # 🩺 Team-Based UAS Project: ML-Heart-Disease-Prediction
 
 ## 1. Pendahuluan
-Proyek ini bertujuan untuk membangun model Machine Learning (ML) yang mampu memprediksi risiko seseorang menderita penyakit jantung (Target: 1) berdasarkan data klinis multi-parameter (Target: 0). Proyek ini sepenuhnya diimplementasikan melalui alur kerja Git/GitHub yang terstruktur.
+Proyek ini bertujuan untuk membangun model Machine Learning (ML) yang mampu memprediksi risiko seseorang menderita penyakit jantung berdasarkan data klinis enam parameter. Proyek ini sepenuhnya diimplementasikan melalui alur kerja Git/GitHub yang terstruktur.
 
-**Tema UAS:** Healthcare (Pelayanan Kesehatan)
+**Tema Machine Learning:** Healthcare (Pelayanan Kesehatan)
 
 ## 2. Anggota Kelompok & Bukti Kolaborasi Git Flow
 
