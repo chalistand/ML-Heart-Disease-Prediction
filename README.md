@@ -7,13 +7,14 @@ Proyek ini bertujuan untuk membangun model Machine Learning (ML) yang mampu memp
 
 ## 2. Anggota Kelompok & Bukti Kolaborasi Git Flow
 
-Semua pekerjaan dilakukan melalui *branching* yang sistematis (`commit`, `branch`, dan `pull request`) sebagai bukti kolaborasi.
+Seluruh pekerjaan dalam proyek ini dilakukan secara kolaboratif menggunakan Git Flow. Setiap anggota berkontribusi melalui branch masing-masing, kemudian digabungkan ke branch utama menggunakan pull request.
 
-| Anggota | Peran | Kontribusi Utama | Branch |
-| :--- | :--- | :--- | :--- |
-| **Chalista** | Project Lead / Reviewer | Setup Repositori, Review dan Merge Pull Requests (PRs). | `main` |
-| **Azza** | Model Training | Data Preprocessing (Scaling), Data Splitting, Model Training (Random Forest), dan Model Evaluation. | `feature/model-build` |
-| **Hani** | Dokumentasi & Deployment | Finalisasi Dokumentasi (README), dan Implementasi Web Deployment menggunakan Flask/HTML. | `feature/hani-documentation-and-deployment` |
+| Anggota      | Peran                    | Kontribusi Utama                                                                                 | Branch                                      |
+| :----------- | :----------------------- | :----------------------------------------------------------------------------------------------- | :------------------------------------------ |
+| *Chalista Nida Nafilla (M0125010)* | Project Lead / Reviewer  | Setup repositori, review dan merge Pull Requests (PRs)                                           | main                                      |
+| *Azza Noor Arieva (M0125008)*     | Model Training           | Data preprocessing (scaling), data splitting, model training (Random Forest), dan evaluasi model | feature/model-build                       |
+| *Hanifah Putri Solikhah (M0125015)*     | Dokumentasi | Finalisasi dokumentasi (README) dan implementasi web deployment menggunakan Flask/HTML           | feature/hani-documentation|
+
 
 ## 3. Tahapan Pengembangan & Hasil Akhir
 
